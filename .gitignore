@@ -116,3 +116,7 @@ Makefile
 .deps
 .dirstamp
 docs
+
+*.log
+
+tap-driver.sh
