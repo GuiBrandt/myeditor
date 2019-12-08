@@ -11,7 +11,7 @@ void cleanup();
 
 void set_status(const char* fmt, ...);
 
-stack* undone;
+stack_t undone;
 
 void myeditor_write(char c) {
     echochar(c);

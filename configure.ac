@@ -1,7 +1,7 @@
 AC_INIT([My Text Editor], 0.0, [gui.g.brandt@gmail.com])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
-AM_INIT_AUTOMAKE([foreign -Wall])
+AM_INIT_AUTOMAKE([foreign subdir-objects -Wall])
 AC_PROG_CC
 AC_CONFIG_FILES(Makefile tests/Makefile)
 AC_REQUIRE_AUX_FILE([tap-driver.sh])

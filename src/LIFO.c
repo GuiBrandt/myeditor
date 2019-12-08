@@ -2,19 +2,30 @@
 
 #include "LIFO.h"
 
-stack* new_stack() {
+typedef struct _LIFO_node {
+    struct _LIFO_node* prev;
+    char value;
+} _stack_node;
+
+typedef struct _LIFO {
+    _stack_node* head;
+    _stack_node* tail;
+} stack;
+
+stack_t new_stack() {
     stack* s = (stack*)malloc(sizeof(stack));
     s->head = 0;
     s->tail = 0;
     return s;
 }
 
-void free_stack(stack* s) {
-    empty(s);
+void free_stack(stack_t s) {
+    empty((stack*)s);
     free(s);
 }
 
-void push(stack* s, char c) {
+void push(stack_t s_, char c) {
+    stack* s = (stack*)s_;
     _stack_node *node = (_stack_node*)malloc(sizeof(_stack_node));
     node->value = c;
     node->prev = s->tail;
@@ -23,7 +34,8 @@ void push(stack* s, char c) {
     s->tail = node;
 }
 
-char pop(stack* s) {
+char pop(stack_t s_) {
+    stack* s = (stack*)s_;
     _stack_node *node = s->tail;
     if (!node)
         return (char)-1;
@@ -35,17 +47,20 @@ char pop(stack* s) {
     return c;
 }
 
-char peek(const stack* s) {
+char peek(const stack_t s_) {
+    stack* s = (stack*)s_;
     if (s->tail)
         return s->tail->value;
     return (char)-1;
 }
 
-char is_empty(const stack* s) {
+char is_empty(const stack_t s_) {
+    stack* s = (stack*)s_;
     return s->head == 0;
 }
 
-void empty(stack* s) {
+void empty(stack_t s_) {
+    stack* s = (stack*)s_;
     _stack_node *node = s->tail, *prev;
     while (node) {
         prev = node->prev;

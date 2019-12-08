@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "../LIFO.h"
+#include <LIFO.h>
 
-stack* s;
+stack_t s;
 
 void test_lifo() {
     s = new_stack();
